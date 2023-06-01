@@ -31,7 +31,8 @@ public class RedisConfig {
     @Value("${spring.data.redis.password}")
     private String redisPassword;
     
-    @Bean
+    @Bean("pizza")
+    // using qualifier is added everytime u autowire template
     @Scope("singleton")
     public RedisTemplate<String, Object> redisTemplate(){
         final RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();

@@ -8,23 +8,29 @@
 </head>
 <body>
     <h1>Order Delivery Details</h1>
-    <form method="POST" action="/pizza/order" th:object="${delivery}">
-        <p>Name:
-            <input type="text" th:field="*{name}">
+    <form method="POST" action="#" data-th-action=@{/pizza/order} th:object="${delivery}">
+        <table>
+            <tr>
+        <td>
+            Name:
+        </td>
+            <input size="30" type="text" data-th-field="*{name}">
             <div th:if="${#fields.hasErrors('name')}">
-                <span th:errors="*{name}" class="error"></span>
+                <span data-th-errors="*{name}" data-th-errorclass="error"></span>
             </div>
+            </tr>
         </p>
+        </table>
         <br>
         <p>Address:
-            <input type="text" th:field="*{address}">
+            <input type="text" th:field="*{address}" size ="30" name="address" id="address">
             <div th:if="${#fields.hasErrors('address')}">
                 <span th:errors="*{address}" class="error"></span>
             </div>
         </p>
         <br>
         <p>Phone:
-            <input type="text" th:field="*{phone}">
+            <input type="tel" th:field="*{phone}" size="30" name="phone" id="phone">
             <div th:if="${#fields.hasErrors('phone')}">
                 <span th:errors="*{phone}" class="error"></span>
             </div>
@@ -36,6 +42,7 @@
         <br>
         <p>Comments:
             <input type="text" th:field="*{comments}">
+            <textarea data-th-field="*{comments}" cols="30" rows="5"></textarea>
         </p>
         <br>
         <input type="submit" value="Cancel Order" formmethod="GET" formaction="/">

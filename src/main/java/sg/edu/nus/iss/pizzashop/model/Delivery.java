@@ -1,6 +1,8 @@
 package sg.edu.nus.iss.pizzashop.model;
 
+import jakarta.json.JsonObject;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class Delivery {
@@ -14,9 +16,10 @@ public class Delivery {
 
     @Size(min=8,max=8, message="phone number must be 8 digits")
     @NotNull(message="Please type in your phone number")
+    @Pattern(regexp="^[0-9],{8,}$")
     private String phone;
 
-    private boolean rush;
+    private boolean rush=false;
     private String comments;
 
     
@@ -51,6 +54,17 @@ public class Delivery {
     }
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public static Delivery create(JsonObject o){
+        Delivery d = new Delivery();
+        d.setName(o.getString("name"));
+        d.setAddress(o.getString("address"));
+        d.setPhone(o.getString("phone"));
+        d.setRush(o.getBoolean("rush"));
+        d.setComments(o.getString("comments"));
+
+        return d;
     }
 
 
