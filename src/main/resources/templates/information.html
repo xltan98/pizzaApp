@@ -40,10 +40,11 @@
             <input type="checkbox" th:field="*{rush}">
         </p>
         <br>
-        <p>Comments:
-            <input type="text" th:field="*{comments}">
-            <textarea data-th-field="*{comments}" cols="30" rows="5"></textarea>
-        </p>
+        <p>Comments:</p>
+            
+            <td>
+                <textarea data-th-field="*{comments}" cols="30" rows="5" placeholder="Your comments"> </textarea>
+            </td>
         <br>
         <input type="submit" value="Cancel Order" formmethod="GET" formaction="/">
        <input type="submit" value="Place Order">
