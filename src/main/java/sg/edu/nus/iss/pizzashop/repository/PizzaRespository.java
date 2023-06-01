@@ -11,7 +11,7 @@ import sg.edu.nus.iss.pizzashop.model.Order;
 public class PizzaRespository {
     @Autowired @Qualifier("pizza")
     // we added qualifier in redis to ensure the redistemplate is use the one u configured
-    private RedisTemplate<String,String> template;
+    private RedisTemplate<String,Object> template;
     // serailizer is string string
 
     public void save(Order o){
@@ -20,7 +20,7 @@ public class PizzaRespository {
     }
 
     public Optional<Order> get(String orderId){
-        String json = template.opsForValue().get(orderId);
+        String json = (String) template.opsForValue().get(orderId);
         if((null == json || json.trim().length() <= 0)){
             return Optional.empty();
         }
